@@ -1,13 +1,10 @@
-# *Lex Villia* DPRR Data Analysis
-
+# *Lex Villia* DPRR Data Analysis 
 
 ## Aediles
 
 [SPARQL Query](./results/aediles.sparql) — [Results CSV](./results/aediles.csv)
 
 ### Analysis
-
-
 
 | Age Summary| Mean        | Median | Mode | Count |
 |:-----------|-------------:|--------:|------:|-------:|
@@ -252,9 +249,7 @@
 
 [SPARQL Query](./results/praetors.sparql) — [Results CSV](./results/praetors.csv)
 
-### Data
-
-
+### Analysis
 
 | Summary | Mean        | Median | Mode | Count |
 |:------------|-------------:|--------:|------:|-------:|
@@ -1119,3 +1114,10 @@
 </details>
 
 <br />
+
+## Licensing & Copyright
+This analysis uses linked data from the [Digital Prosopography of the Roman Republic](https://romanrepublic.ac.uk/) (DPRR) and is used under [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/)
+
+A [copy of the exported RDF data](./export/2023-11-27.n3) is included in the repository for convenience. It is therefore subject to the same license terms.
+
+The SPARQL queries and any custom code are open-source and subject [license terms](./LICENSE).
