@@ -1,0 +1,34 @@
+PREFIX : <http://romanrepublic.ac.uk/rdf/ontology#>
+
+SELECT ?id ?name ?birth_year ?individual ?post ?office ?office_year
+
+WHERE {
+    ?post a :PostAssertion;
+        :hasDateStart ?office_year ;
+        :isAboutPerson ?individual ;
+        :hasOffice/:hasName ?office .
+    {
+        # praetor
+        ?post :hasOffice <http://romanrepublic.ac.uk/rdf/entity/Office/42> . 
+    } UNION {
+        # praetor disignatus
+        ?post :hasOffice <http://romanrepublic.ac.uk/rdf/entity/Office/268> . 
+    } UNION {
+        # praetor suffectus
+        ?post :hasOffice <http://romanrepublic.ac.uk/rdf/entity/Office/50> . 
+    }
+    
+    ?individual a :Person ;
+        :hasID ?id ;
+        :hasPersonName ?name .
+    
+    # Include birth year if exists.
+    OPTIONAL {
+        ?_i_binfo a :DateInformation ;
+            :hasDateType <http://romanrepublic.ac.uk/rdf/entity/DateType/1> ; # birth
+            :isAboutPerson ?individual ;
+            :hasValue ?birth_year .
+    }
+}
+
+ORDER BY ?office_year

@@ -1,0 +1,35 @@
+PREFIX : <http://romanrepublic.ac.uk/rdf/ontology#>
+
+SELECT ?id ?name ?birth_year ?office ?office_year ?individual ?post
+
+WHERE {
+    ?post a :PostAssertion;
+        :hasDateStart ?office_year ;
+        :isAboutPerson ?individual ;
+        :hasOffice/:hasName ?office .
+    {
+        # aedile
+        ?post :hasOffice <http://romanrepublic.ac.uk/rdf/entity/Office/45> . 
+    } UNION {
+        # aedile plebis
+        ?post :hasOffice <http://romanrepublic.ac.uk/rdf/entity/Office/20> . 
+    } UNION {
+        # aedile curulis
+        ?post :hasOffice <http://romanrepublic.ac.uk/rdf/entity/Office/43> . 
+    }
+    
+    ?individual a :Person ;
+        :hasID ?id ;
+        :hasPersonName ?name .
+    
+    # Include birth year if exists.
+    OPTIONAL {
+        ?_i_binfo a :DateInformation ;
+            :hasDateType <http://romanrepublic.ac.uk/rdf/entity/DateType/1> ; # birth
+            :isAboutPerson ?individual ;
+            :hasValue ?birth_year .
+    }
+
+}
+
+ORDER BY ?office_year
